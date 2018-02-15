@@ -23,8 +23,10 @@ init:
   
 install:
   - cmd: choco install 7zip.commandline
-  - call .av\set_compiler_env.bat
-  - call .av\install.bat
+  - cmd: choco install lua51
+  - cmd: choco install luarocks
+#  - call .av\set_compiler_env.bat
+#  - call .av\install.bat
   - cmd: luarocks install luasrcdiet
   - cmd: luarocks install checks
   - cmd: luarocks install luadocumentor
