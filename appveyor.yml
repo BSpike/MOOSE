@@ -22,7 +22,7 @@ init:
         throw "There are newer queued builds for this pull request, failing early." }
   
 install:
-  - cmd: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat
+  - cmd: "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
   - cmd: choco install 7zip.commandline
   - cmd: choco install lua51
   - cmd: choco install luarocks
