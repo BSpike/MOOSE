@@ -48,8 +48,8 @@ cache:
 
 
 build_script:
-  - cmd: md '"Moose Include Static"'
-  - cmd: md '"Moose Include Dynamic"'
+  - cmd: md "Moose Include Static"
+  - cmd: md "Moose Include Dynamic"
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose Include Static" 
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose Include Dynamic"
   - ps: if( $env:appveyor_repo_branch -eq 'master' )    
