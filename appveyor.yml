@@ -40,6 +40,11 @@ install:
   - cmd: luarocks install luadocumentor
   - cmd: luarocks install luacheck
 
+cache:
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+
+
 build_script:
   - cmd: lua5.1 "Moose Mission Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Mission Setup" 
   - cmd: luadocumentor -f doc -d docs/Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose"
