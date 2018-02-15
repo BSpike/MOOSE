@@ -63,6 +63,7 @@ test: off
 # test_script:
 #   - cmd: luacheck "Moose Development\Moose\moose.lua" "Moose Mission Setup\moose.lua"
 
+
 artifacts:
   - path: 'Moose_Include_Static\*.lua'
     name: Static
