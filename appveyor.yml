@@ -25,11 +25,11 @@ init:
 
   
 install:
-  - cmd: '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"' 
   - cmd: choco install 7zip.commandline
   - cmd: choco install lua51
   - cmd: choco install luarocks
   - cmd: refreshenv
+  - cmd: '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"' 
 #  - call .av\set_compiler_env.bat
 #  - call .av\install.bat
   - cmd: luarocks install luasrcdiet
