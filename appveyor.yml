@@ -38,7 +38,7 @@ install:
   - cmd: luarocks install luacheck
 
 build_script:
-  - cmd: lua "Moose Mission Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Mission Setup" 
+  - cmd: lua5.1 "Moose Mission Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Mission Setup" 
   - cmd: luadocumentor -f doc -d docs/Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose"
   - cmd: luasrcdiet --basic --opt-emptylines "Moose Mission Setup\Moose.lua"
 #  - cmd: .av\build_missions.bat
