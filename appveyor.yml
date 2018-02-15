@@ -57,17 +57,18 @@ build_script:
   - ps: >- 
        if( $env:appveyor_repo_branch -eq 'FC-Appveyor' )     
        {  
-         md Documentation
          git clone -q https://github.com/FlightControl-Master/MOOSE_DOCUMENTATION.git Documentation
          dir 
-         luadocumentor -f doc -d Documentation -s Documentation/Stylesheet/stylesheet.css "Moose Development/Moose" 
+         luadocumentor -f doc -d Documentation -s Documentation/Stylesheet/stylesheet.css "Moose Development/Moose"
+         cd Documentation 
          git config --global credential.helper store 
          Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token_documentation):x-oauth-basic@github.com`n" 
          git config --global user.email "sven.van.de.velde@telenet.be" 
          git config --global user.name "FlightControl-User" 
-         git add Documentation 
+         git add . 
          git commit
-         git push origin master 
+         git push origin master
+         cd .. 
        } 
   - ps: . luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
 #  - cmd: .av\build_missions.bat
