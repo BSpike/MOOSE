@@ -6,6 +6,8 @@ skip_commits:
 skip_tags: false
 
 environment:
+  access_token_documentation:
+    secure: 7bq9qM/tYOMmFrq8a5316yi1if4sXk+XYEdykVzx8TA=
   LUAROCKS_VER: 2.4.1
   LUA_VER: 5.1.5
   LUA: lua5.3
@@ -52,9 +54,17 @@ build_script:
   - cmd: md "Moose_Include_Dynamic"
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
-  - ps: if( $env:appveyor_repo_branch -eq 'master' )    
+  - ps: if( $env:appveyor_repo_branch -eq 'FC-Appveyor' )    
        {
-         . luadocumentor -f doc -d docs/Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose" 
+         . git clone https://github.com/FlightControl-Master/MOOSE_DOCUMENTATION.git Documentation
+         . luadocumentor -f doc -d Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose"
+         . git config --global credential.helper store
+         Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token_documentation):x-oauth-basic@github.com`n"
+         . git config --global user.email "sven.van.de.velde@telenet.be"
+         . git config --global user.name "FlightControl-User"
+         . git add .
+         . git commit
+         . git push origin master
        } 
   - ps: . luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
 #  - cmd: .av\build_missions.bat
