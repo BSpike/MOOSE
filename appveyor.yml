@@ -66,7 +66,7 @@ build_script:
          git config --global user.email "sven.van.de.velde@telenet.be" 
          git config --global user.name "FlightControl-User" 
          git add . 
-         git commit
+         git commit -m "Documentation Generation for MOOSE GITHUB Commit Hash ID %APPVEYOR_REPO_COMMIT%" 
          git push origin master
          cd .. 
        } 
