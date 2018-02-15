@@ -43,6 +43,7 @@ install:
 cache:
   - C:\ProgramData\chocolatey\lib
   - C:\ProgramData\chocolatey\bin
+  - C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree
 
 
 build_script:
