@@ -25,20 +25,20 @@ init:
 
   
 install:
-  - cmd: choco install 7zip.commandline
-  - cmd: choco install lua51
-  - cmd: choco install luarocks
-  - cmd: refreshenv
-  - cmd: '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"'
-  - cmd: PATH = %PATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\bin
-  - cmd: set LUA_PATH = %LUA_PATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\share\lua\5.1\?.lua;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\share\lua\5.1\?\init.lua
-  - cmd: set LUA_CPATH = %LUA_CPATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\lib\lua\5.1\?.dll 
+  - ps: . choco install 7zip.commandline
+  - ps: . choco install lua51
+  - ps: . choco install luarocks
+  - ps: . refreshenv
+  - ps: . '"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"'
+  - ps: PATH = %PATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\bin
+  - ps: set LUA_PATH = %LUA_PATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\share\lua\5.1\?.lua;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\share\lua\5.1\?\init.lua
+  - ps: set LUA_CPATH = %LUA_CPATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\lib\lua\5.1\?.dll 
 #  - call .av\set_compiler_env.bat
 #  - call .av\install.bat
-  - cmd: luarocks install luasrcdiet
-  - cmd: luarocks install checks
-  - cmd: luarocks install luadocumentor
-  - cmd: luarocks install luacheck
+  - ps: . luarocks install luasrcdiet
+  - ps: . luarocks install checks
+  - ps: . luarocks install luadocumentor
+  - ps: . luarocks install luacheck
 
 cache:
   - C:\ProgramData\chocolatey\lib
@@ -48,12 +48,12 @@ cache:
 
 
 build_script:
-  - cmd: lua5.1 "Moose Mission Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Mission Setup" 
+  - ps: . lua5.1 "Moose Mission Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Mission Setup" 
   - ps: if( $env:appveyor_repo_branch -eq 'master' )    
        {
          . luadocumentor -f doc -d docs/Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose" 
        } 
-  - cmd: luasrcdiet --basic --opt-emptylines "Moose Mission Setup\Moose.lua"
+  - ps: . luasrcdiet --basic --opt-emptylines "Moose Mission Setup\Moose.lua"
 #  - cmd: .av\build_missions.bat
 
 test: off
