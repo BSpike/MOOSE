@@ -65,9 +65,9 @@ test: off
 
 artifacts:
   - path: 'Moose Include Static\*.lua'
-    name: Static
+    name: lua
   - path: 'Moose Include Dynamic\*.lua'
-    name: Dynamic
+    name: lua
 #  - path: 'MOOSE_MISSIONS-Release\*.miz'
 #    name: miz
 
