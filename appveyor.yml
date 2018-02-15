@@ -41,8 +41,8 @@ install:
   - cmd: luarocks install luacheck
 
 cache:
-  - C:\ProgramData\chocolatey\lib -> appveyor.yml
-  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib
+  - C:\ProgramData\chocolatey\bin
 
 
 build_script:
