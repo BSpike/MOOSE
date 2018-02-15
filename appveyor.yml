@@ -48,15 +48,15 @@ cache:
 
 
 build_script:
-  - cmd: md "Moose Include Static"
-  - cmd: md "Moose Include Dynamic"
-  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose Include Static" 
-  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose Include Dynamic"
+  - cmd: md "Moose_Include_Static"
+  - cmd: md "Moose_Include_Dynamic"
+  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
+  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
   - ps: if( $env:appveyor_repo_branch -eq 'master' )    
        {
          . luadocumentor -f doc -d docs/Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose" 
        } 
-  - ps: . luasrcdiet --basic --opt-emptylines "Moose Include Static\Moose.lua"
+  - ps: . luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
 #  - cmd: .av\build_missions.bat
 
 test: off
@@ -64,10 +64,10 @@ test: off
 #   - cmd: luacheck "Moose Development\Moose\moose.lua" "Moose Mission Setup\moose.lua"
 
 artifacts:
-  - path: 'Moose Include Static\*.lua'
-    name: lua
-  - path: 'Moose Include Dynamic\*.lua'
-    name: lua
+  - path: 'Moose_Include_Static\*.lua'
+    name: Static
+  - path: 'Moose_Include_Dynamic\*.lua'
+    name: Dynamic
 #  - path: 'MOOSE_MISSIONS-Release\*.miz'
 #    name: miz
 
