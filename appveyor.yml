@@ -56,7 +56,7 @@ build_script:
        {
          . luadocumentor -f doc -d docs/Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose" 
        } 
-  - ps: . luasrcdiet --basic --opt-emptylines "Moose Setup\Moose.lua"
+  - ps: . luasrcdiet --basic --opt-emptylines "Moose Setup\Moose Include Static\Moose.lua"
 #  - cmd: .av\build_missions.bat
 
 test: off
