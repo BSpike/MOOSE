@@ -53,7 +53,7 @@ build_script:
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
   - ps: >- 
-       if( $env:appveyor_repo_branch -eq 'FC-Appveyor' )     
+       if( $env:appveyor_repo_branch -eq 'master' )     
        {  
          git clone -q https://github.com/FlightControl-Master/MOOSE_DOCUMENTATION.git Documentation
          dir 
