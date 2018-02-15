@@ -57,6 +57,7 @@ build_script:
   - ps: >- 
        if( $env:appveyor_repo_branch -eq 'FC-Appveyor' )     
        {  
+         md Documentation
          . git clone https://github.com/FlightControl-Master/MOOSE_DOCUMENTATION.git Documentation 
          . luadocumentor -f doc -d Documentation -s docs/Stylesheet/stylesheet.css "Moose Development/Moose" 
          . git config --global credential.helper store 
@@ -84,4 +85,4 @@ artifacts:
 #    name: miz
 
 on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
