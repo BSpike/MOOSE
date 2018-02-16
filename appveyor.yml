@@ -66,7 +66,7 @@ build_script:
          git add . 
          git commit -m "Documentation Generation for MOOSE GITHUB Commit Hash ID $env:APPVEYOR_REPO_COMMIT" 
          git push origin master
-         cd .. 
+         cd ..
        } 
   - ps: . luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
 #  - cmd: .av\build_missions.bat
@@ -81,6 +81,8 @@ artifacts:
     name: Static
   - path: 'Moose_Include_Dynamic\*.lua'
     name: Dynamic
+  - path: 'Documentation'
+    name: Documentation
 #  - path: 'MOOSE_MISSIONS-Release\*.miz'
 #    name: miz
 
