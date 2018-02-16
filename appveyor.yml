@@ -68,7 +68,7 @@ build_script:
 
 
          # get project with last build details
-         $project = Invoke-RestMethod -Method Get -Uri "$apiUrl/builds/$accountName/$projectSlug" -Headers $headers
+         $project = Invoke-RestMethod -Method Post -Uri "$apiUrl/builds/$accountName/$projectSlug" -Headers $headers
          
          
        }
