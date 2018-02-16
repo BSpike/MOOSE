@@ -41,9 +41,9 @@ install:
   - ps: . luarocks install luacheck
 
 cache:
-  - C:\ProgramData\chocolatey\lib
-  - C:\ProgramData\chocolatey\bin
-  - C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree
+#  - C:\ProgramData\chocolatey\lib
+#  - C:\ProgramData\chocolatey\bin
+#  - C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree
   
 
 
@@ -52,10 +52,11 @@ build_script:
   - cmd: md "Moose_Include_Dynamic"
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
   - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
+  - ps: . luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
   - ps: >- 
        if( $env:appveyor_repo_branch -eq 'master' )     
        {  
-         git clone -q https://github.com/FlightControl-Master/MOOSE_DOCUMENTATION.git Documentation
+         git clone -q https://github.com/FlightControl-Master/MOOSE_DOCS.git Documentation
          dir 
          luadocumentor -f doc -d Documentation/Documentation -s Documentation/Stylesheet/stylesheet.css "Moose Development/Moose"
          cd Documentation
@@ -67,9 +68,12 @@ build_script:
          git commit -m "Documentation Generation for MOOSE GITHUB Commit Hash ID $env:APPVEYOR_REPO_COMMIT" 
          git push origin master
          cd ..
-       } 
-  - ps: . luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
-#  - cmd: .av\build_missions.bat
+       }
+#   ps : >- 
+#       if( $env:appveyor_repo_branch -eq 'master' )     
+#       {  
+#         . .av\build_missions.bat
+#       }
 
 test: off
 # test_script:
