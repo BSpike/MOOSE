@@ -35,40 +35,40 @@ install:
   - cmd: set LUA_CPATH = %LUA_CPATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\lib\lua\5.1\?.dll 
 #  - call .av\set_compiler_env.bat
 #  - call .av\install.bat
-#  - ps: . luarocks install luasrcdiet
-#  - ps: . luarocks install checks
-#  - ps: . luarocks install luadocumentor
-#  - ps: . luarocks install luacheck
+  - cmd: luarocks install luasrcdiet
+  - cmd: luarocks install checks
+  - cmd: luarocks install luadocumentor
+  - cmd: luarocks install luacheck
 
 cache:
   - C:\ProgramData\chocolatey\lib
   - C:\ProgramData\chocolatey\bin
-#  - C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree
+  - C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree
   
 
 
 build_script:
    - cmd: md "Moose_Include_Static"
-#  - cmd: md "Moose_Include_Dynamic"
-#  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
-#  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
-#  - ps: . luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
-#  - ps: >- 
-#       if( $env:appveyor_repo_branch -eq 'master' )     
-#       {  
-#         git clone -q https://github.com/FlightControl-Master/MOOSE_DOCS.git Documentation
-#         dir 
-#         luadocumentor -f doc -d Documentation/Documentation -s Documentation/Stylesheet/stylesheet.css "Moose Development/Moose"
-#         cd Documentation
-#         git config --global credential.helper store 
-#         Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token_documentation):x-oauth-basic@github.com`n" 
-#         git config --global user.email "sven.van.de.velde@telenet.be" 
-#         git config --global user.name "FlightControl-User" 
-#         git add . 
-#         git commit -m "Documentation Generation for MOOSE GITHUB Commit Hash ID $env:APPVEYOR_REPO_COMMIT" 
-#         git push origin master
-#         cd ..
-#       }
+   - cmd: md "Moose_Include_Dynamic"
+   - cmd: lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
+   - cmd: lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
+   - cmd: luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
+   - ps: >- 
+        if( $env:appveyor_repo_branch -eq 'master' )     
+        {  
+          git clone -q https://github.com/FlightControl-Master/MOOSE_DOCS.git Documentation
+          dir 
+          luadocumentor -f doc -d Documentation/Documentation -s Documentation/Stylesheet/stylesheet.css "Moose Development/Moose"
+          cd Documentation
+          git config --global credential.helper store 
+          Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token_documentation):x-oauth-basic@github.com`n" 
+          git config --global user.email "sven.van.de.velde@telenet.be" 
+          git config --global user.name "FlightControl-User" 
+          git add . 
+          git commit -m "Documentation Generation for MOOSE GITHUB Commit Hash ID $env:APPVEYOR_REPO_COMMIT" 
+          git push origin master
+          cd ..
+        }
 #   ps : >- 
 #       if( $env:appveyor_repo_branch -eq 'master' )     
 #       {  
