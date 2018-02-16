@@ -48,7 +48,7 @@ cache:
 
 
 build_script:
-#  - cmd: md "Moose_Include_Static"
+   - cmd: md "Moose_Include_Static"
 #  - cmd: md "Moose_Include_Dynamic"
 #  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
 #  - ps: . lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
