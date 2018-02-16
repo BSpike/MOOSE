@@ -18,7 +18,7 @@
 -- @field White
 -- @field Orange
 -- @field Blue
- 
+
 SMOKECOLOR = trigger.smokeColor -- #SMOKECOLOR
 
 --- @type FLARECOLOR

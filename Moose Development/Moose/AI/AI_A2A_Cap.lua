@@ -8,7 +8,7 @@
 -- 
 -- There are the following types of CAP classes defined:
 -- 
---   * @{#AI_A2A_CAP}: Perform a CAP in a zone.
+--   * @{#AI_A2A_CAP}: Perform a CAP in a zone and potentially attack any intruders.
 --   
 -- ====
 -- 
