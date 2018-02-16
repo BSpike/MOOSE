@@ -54,7 +54,7 @@ build_script:
    - cmd: lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
    - cmd: luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
    - ps: | 
-       if( $env:appveyor_repo_branch -eq 'master' )     
+       if( $env:appveyor_repo_branch -eq 'FC-Appveyor' )     
        {
          $apiUrl = 'https://ci.appveyor.com/api'
          $token = 'qts80b5kpq0ooj4x6vvw'
