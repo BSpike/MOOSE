@@ -55,19 +55,21 @@ build_script:
    - cmd: luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
    - ps: | 
        if( $env:appveyor_repo_branch -eq 'master' )     
-       {  
-         git clone -q https://github.com/FlightControl-Master/MOOSE_DOCS.git Documentation
-         dir 
-         luadocumentor -f doc -d Documentation/Documentation -s Documentation/Stylesheet/stylesheet.css "Moose Development/Moose"
-         cd Documentation
-         git config --global credential.helper store 
-         Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token_documentation):x-oauth-basic@github.com`n" 
-         git config --global user.email "sven.van.de.velde@telenet.be" 
-         git config --global user.name "FlightControl-User" 
-         git add . 
-         git commit -m "Documentation Generation for MOOSE GITHUB Commit Hash ID $env:APPVEYOR_REPO_COMMIT" 
-         git push origin master
-         cd ..
+       {
+         $apiUrl = 'https://ci.appveyor.com/api/builds'
+         $token = 'qts80b5kpq0ooj4x6vvw'
+         $headers = @{
+            "Authorization" = "Bearer $token"
+            "Content-type" = "application/json"
+            }
+         $accountName = 'FlightControl-Master'
+         $projectSlug = 'moose-docs'
+         $branch = "master"
+
+
+         # get project with last build details
+         $project = Invoke-RestMethod -Method Post -Uri "$apiUrl/projects/$accountName/$projectSlug" -Headers $headers
+         
        }
 #   ps : >- 
 #       if( $env:appveyor_repo_branch -eq 'master' )     
