@@ -25,9 +25,9 @@ init:
 #  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 install:
-  - call choco install 7zip.commandline
-  - call choco install lua51
-  - call choco install luarocks
+  #- call choco install 7zip.commandline
+  #- call choco install lua51
+  #- call choco install luarocks
 #  - call refreshenv
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
   - cmd: PATH = %PATH%;C:\ProgramData\chocolatey\lib\luarocks\luarocks-2.4.3-win32\systree\bin
@@ -81,8 +81,6 @@ artifacts:
     name: Static
   - path: 'Moose_Include_Dynamic\*.lua'
     name: Dynamic
-  - path: 'Documentation'
-    name: Documentation
 #  - path: 'MOOSE_MISSIONS-Release\*.miz'
 #    name: miz
 
