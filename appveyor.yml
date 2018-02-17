@@ -25,6 +25,7 @@ init:
 #  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 install:
+# Outcomment if lua environment invalidates and needs to be reinstalled, otherwise all will run from the cache.
 #  - call choco install 7zip.commandline
 #  - call choco install lua51
 #  - call choco install luarocks
@@ -48,9 +49,9 @@ cache:
 build_script:
    - cmd: md "Moose_Include_Static"
    - cmd: md "Moose_Include_Dynamic"
-   - cmd: lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
-   - cmd: lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
-   - cmd: luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
+   - call lua5.1 "Moose Setup\\Moose_Create.lua" "S" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Static" 
+   - call lua5.1 "Moose Setup\\Moose_Create.lua" "D" %APPVEYOR_REPO_COMMIT% "Moose Development\\Moose" "Moose Setup" "Moose_Include_Dynamic"
+   - call luasrcdiet --basic --opt-emptylines "Moose_Include_Static\Moose.lua"
    - ps: | 
        if( $env:appveyor_repo_branch -eq 'FC-Appveyor' )     
        {
