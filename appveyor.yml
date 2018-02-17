@@ -41,6 +41,7 @@ install:
 cache:
   - C:\ProgramData\chocolatey\lib
   - C:\ProgramData\chocolatey\bin
+  - C:\Users\appveyor\AppData\Local\Temp\chocolatey
   
 
 
